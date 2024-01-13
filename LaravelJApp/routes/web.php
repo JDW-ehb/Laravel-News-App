@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +38,29 @@ Route::group(['middleware' => ['auth']], function () {
         return "hi";
     });
 
+});
+
+//protected routes for logged in users
+Route::group(['middleware' => ['auth']], function () {
+   
+    Route::get('/profile',function(){
+        return "hi";
+    });
 
 });
 
+
+Route::get('/logout', [AuthManager::class, 'logout'])->name('logout.get');
+
+//for the promote to admin
+Route::post('/promote-to-admin/{user}', [UserController::class, 'promoteToAdmin'])->name('promote.to.admin');
+
+
+//protected routes for admin
+Route::group(['middleware' => ['auth', 'admin']], function () {
+    // Place your admin-only routes here
+    Route::get('/admin', function() {
+        return view('auth.adminpanel');
+    });
+
+});
