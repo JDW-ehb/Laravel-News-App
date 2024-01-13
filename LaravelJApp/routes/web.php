@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,13 +32,7 @@ Route::post('/registration', [AuthManager::class, 'registrationPost'])->name('re
 
 Route::get('/logout', [AuthManager::class, 'logout'])->name('logout.get');
 
-Route::group(['middleware' => ['auth']], function () {
-   
-    Route::get('/profile',function(){
-        return "hi";
-    });
 
-});
 
 //protected routes for logged in users
 Route::group(['middleware' => ['auth']], function () {
@@ -59,8 +53,7 @@ Route::post('/promote-to-admin/{user}', [UserController::class, 'promoteToAdmin'
 //protected routes for admin
 Route::group(['middleware' => ['auth', 'admin']], function () {
     // Place your admin-only routes here
-    Route::get('/admin', function() {
-        return view('auth.adminpanel');
-    });
+    Route::get('/adminPanel', [AdminController::class, 'index'])->name('admin.index');
 
 });
+
