@@ -14,14 +14,14 @@ class AuthManager extends Controller
         if (Auth::check()) {
             return redirect(route('home'));
         } 
-        return view('login');
+        return view('auth.login');
     }
 
     function registration(){
         if (Auth::check()) {
             return redirect(route('home'));
         } 
-        return view('registration');
+        return view('auth.registration');
     }
 
     function loginPost(Request $req){
