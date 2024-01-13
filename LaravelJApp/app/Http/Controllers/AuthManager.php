@@ -12,14 +12,14 @@ class AuthManager extends Controller
 {
     function login(){
         if (Auth::check()) {
-            return redirect(route('home'));
+            return redirect(route('latest-news'));
         } 
         return view('auth.login');
     }
 
     function registration(){
         if (Auth::check()) {
-            return redirect(route('home'));
+            return redirect(route('latest-news'));
         } 
         return view('auth.registration');
     }
@@ -35,7 +35,7 @@ class AuthManager extends Controller
         if (Auth::attempt($credentials)) {
         // $req->session()->regenerate();
 
-            return redirect()->intended(route('home'));
+            return redirect()->intended(route('latest-news'));
         }
         return redirect(route('login.get'))->with("error", "Invalid Credentials");
     }

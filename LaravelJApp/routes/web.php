@@ -17,10 +17,11 @@ use App\Http\Controllers\NewsController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// main page & news
+Route::get('/', [NewsController::class, 'latestNews'])->name('latest-news');
 
-Route::get('/', function () {
-    return view('pages.welcome');
-})->name('home');
+
+
 
 // Route::get('/login', function () {
 Route::get('/login', [AuthManager::class, 'login'])->name('login.get');
@@ -63,3 +64,4 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
 Route::post('/profile/update/name', [ProfileController::class, 'updateName'])->name('profile.update.name');
 Route::post('/profile/update/avatar', [ProfileController::class, 'updateAvatar'])->name('profile.update.avatar');
+
