@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\NewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,9 +39,8 @@ Route::get('/logout', [AuthManager::class, 'logout'])->name('logout.get');
 //protected routes for logged in users
 Route::group(['middleware' => ['auth']], function () {
    
-    Route::get('/profile',function(){
-        return "hi";
-    });
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile')->middleware('auth');
+
 
 });
 
@@ -57,3 +58,8 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
 });
 
+
+//update your profile avatar
+Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
+Route::post('/profile/update/name', [ProfileController::class, 'updateName'])->name('profile.update.name');
+Route::post('/profile/update/avatar', [ProfileController::class, 'updateAvatar'])->name('profile.update.avatar');

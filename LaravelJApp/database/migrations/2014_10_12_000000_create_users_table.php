@@ -20,6 +20,9 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->boolean('isAdmin')->default(false);
+            $table->string('avatar')->nullable();
+            $table->date('birthday')->nullable();
+            $table->string('about_me')->nullable();
         });
     }
 

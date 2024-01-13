@@ -24,6 +24,7 @@ class User extends Authenticatable
         'email',
         'password',
         'isAdmin',
+        'birthday',
     ];
 
     /**
@@ -45,5 +46,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
         'isAdmin' => 'boolean',
+        'birthday' => 'date', // This tells Laravel to treat the 'birthday' field as a date
     ];
 }
