@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,3 +93,7 @@ Route::post('/profile/update', [ProfileController::class, 'update'])->name('prof
 Route::post('/profile/update/name', [ProfileController::class, 'updateName'])->name('profile.update.name');
 Route::post('/profile/update/avatar', [ProfileController::class, 'updateAvatar'])->name('profile.update.avatar');
 
+// contact form & view 
+Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.show');
+Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
+Route::get('/messages', [ContactController::class, 'showMessages'])->name('messages.show');

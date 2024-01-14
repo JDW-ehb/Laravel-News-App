@@ -19,7 +19,7 @@ class AuthManager extends Controller
 
     function registration(){
         if (Auth::check()) {
-            return redirect(route('latest-news'));
+            return redirect(route('login.get'));
         } 
         return view('auth.registration');
     }

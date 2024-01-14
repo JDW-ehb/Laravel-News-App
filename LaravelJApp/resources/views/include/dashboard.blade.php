@@ -37,9 +37,15 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.index') }}">Admin Page</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('messages.show') }}">View Messages</a>
+      </li>
       @endif
       <li class="nav-item">
           <a class="nav-link" href="{{ route('faqs.index') }}">FAQ</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" href="{{ route('contact.show') }}">Contact Us</a>
       </li>
     </ul>
     
