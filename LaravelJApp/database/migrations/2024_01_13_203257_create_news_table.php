@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('cover_image')->nullable(); // URL to the image
+            $table->text('summary');
             $table->text('content');
             $table->date('publishing_date')->useCurrent(); // Automatically set the current timestamp when a record is created
             $table->timestamps();

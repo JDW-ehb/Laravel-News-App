@@ -9,10 +9,5 @@ class UserController extends Controller
 {
     // Other user-related methods...
 
-    public function promoteToAdmin(User $user)
-{
-    $user->update(['isAdmin' => true]);
-    return redirect()->back()->with('success', 'User promoted to admin successfully');
-}
 
 }

@@ -2,64 +2,77 @@
 @section('title', 'Profile')
 
 @section('content')
-    <h1>Profile Page</h1>
+    <div class="container mt-4">
+        <h1>Profile Page</h1>
 
-    <!-- Display Profile Info -->
-    <div id="profileDisplay">
-        <p>Name: {{ $user->name }}</p>
-        <p>Email: {{ $user->email }}</p>
-        <p>Birthday: {{ $user->birthday ? $user->birthday->format('Y-m-d') : 'Not set' }}</p>
+        <!-- Display Profile Info -->
+        <div class="container mt-4">
+        <!-- Edit Profile Button -->
         
-        <p>About Me: {{ $user->about_me }}</p>
-        <!-- Display Avatar -->
-        @if($user->avatar)
-            <img src="{{ $user->avatar }}" alt="{{ $user->name }}'s Avatar" style="width:100px; height:100px;">
-        @else
-            <p>No avatar set.</p>
-        @endif
-        <button onclick="toggleEdit()">Edit Profile</button>
-    </div>
 
-    <!-- Edit Profile Form -->
-    <div id="profileEdit" style="display: none;">
-        <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
-            @csrf
+        <!-- Profile Information and Avatar -->
+        <div class="bg-primary p-3 text-white rounded">
+            <div class="row">
+                <!-- Avatar -->
+                <div class="col-md-4 mb-3 mb-md-0">
+                    @if($user->avatar)
+                        <img src="{{ $user->avatar }}" alt="{{ $user->name }}'s Avatar" class="img-fluid img-thumbnail">
+                    @else
+                        <p>No avatar set.</p>
+                    @endif
+                </div>
 
-            <!-- Form fields here, similar to previous examples -->
-            <!-- ... -->
-    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-
-        <div>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="{{ $user->name }}">
+                <!-- Profile Info -->
+                <div class="col-md-8">
+                    <div id="profileDisplay">
+                        <p><strong>Name:</strong> {{ $user->name }}</p>
+                        <p><strong>Email:</strong> {{ $user->email }}</p>
+                        <p><strong>Birthday:</strong> {{ $user->birthday ? $user->birthday->format('Y-m-d') : 'Not set' }}</p>
+                        <p><strong>About Me:</strong> {{ $user->about_me }}</p>
+                    </div>
+                    <div class="row mb-3">
+            <div class="col-12">
+                <button onclick="toggleEdit()" class="btn btn-info">Edit Profile</button>
+            </div>
+        </div>
+                </div>
+            </div>
         </div>
 
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="{{ $user->email }}">
-        </div>
+        <!-- Edit Profile Form -->
+        <div id="profileEdit" style="display: none;">
+            <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data" class="mb-4">
+                @csrf
 
-        <div>
-            <label for="birthday">Birthday:</label>
-            <input type="date" id="birthday" name="birthday" value="{{ $user->birthday ? $user->birthday->format('Y-m-d') : '' }}">
-        </div>
+                <div class="form-group mb-3">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}">
+                </div>
 
-        <div>
-            <label for="about_me">About Me:</label>
-            <textarea id="about_me" name="about_me">{{ $user->about_me }}</textarea>
-        </div>
+                <div class="form-group mb-3">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}">
+                </div>
 
-        <div>
-            <label for="avatar">Change Avatar:</label>
-            <input type="file" id="avatar" name="avatar">
-        </div>
+                <div class="form-group mb-3">
+                    <label for="birthday">Birthday:</label>
+                    <input type="date" class="form-control" id="birthday" name="birthday" value="{{ $user->birthday ? $user->birthday->format('Y-m-d') : '' }}">
+                </div>
 
-        <button type="submit">Update Profile</button>
-    </form>
-    
-            <button type="button" onclick="toggleEdit()">Cancel</button>
-        </form>
+                <div class="form-group mb-3">
+                    <label for="about_me">About Me:</label>
+                    <textarea class="form-control" id="about_me" name="about_me" rows="4">{{ $user->about_me }}</textarea>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="avatar">Change Avatar:</label>
+                    <input type="file" class="form-control-file" id="avatar" name="avatar">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Update Profile</button>
+                <button type="button" onclick="toggleEdit()" class="btn btn-secondary">Cancel</button>
+            </form>
+        </div>
     </div>
 @endsection
 

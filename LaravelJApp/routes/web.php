@@ -20,6 +20,14 @@ use App\Http\Controllers\NewsController;
 // main page & news
 Route::get('/', [NewsController::class, 'latestNews'])->name('latest-news');
 
+// creation of pages
+Route::get('/news/create', [NewsController::class, 'create'])->name('news.create')->middleware('auth'); // Assuming only authenticated users can create articles
+Route::delete('/news/{news}', [NewsController::class, 'destroy'])->name('news.destroy');
+Route::post('/news', [NewsController::class, 'store'])->name('news.store');
+
+//navigation to the full articles:
+Route::get('/news/{news}', [NewsController::class, 'show'])->name('news.show');
+
 
 
 
@@ -55,7 +63,9 @@ Route::post('/promote-to-admin/{user}', [UserController::class, 'promoteToAdmin'
 //protected routes for admin
 Route::group(['middleware' => ['auth', 'admin']], function () {
     // Place your admin-only routes here
-    Route::get('/adminPanel', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::post('/promote-to-admin/{user}', [AdminController::class, 'promoteToAdmin'])->name('promote.to.admin');
+    Route::post('/demote-from-admin/{user}', [AdminController::class, 'demoteFromAdmin'])->name('demote.from.admin');
 
 });
 

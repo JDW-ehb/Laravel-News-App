@@ -26,9 +26,15 @@
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
+      @if(auth()->check() && auth()->user()->isAdmin)
       <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        <a class="nav-link" href="{{ route('news.create') }}">Create articles</a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.index') }}" >Admin page</a>
+      </li>
+      @endif
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
