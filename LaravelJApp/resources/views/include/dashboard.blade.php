@@ -44,8 +44,14 @@
       <li class="nav-item">
           <a class="nav-link" href="{{ route('faqs.index') }}">FAQ</a>
       </li>
+      @unless(auth()->check() && auth()->user()->isAdmin)
       <li class="nav-item">
           <a class="nav-link" href="{{ route('contact.show') }}">Contact Us</a>
+      </li>
+      @endunless
+
+      <li class="nav-item">
+          <a class="nav-link" href="{{ route('about') }}">about</a>
       </li>
     </ul>
     

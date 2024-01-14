@@ -39,6 +39,10 @@
                         <button type="submit" class="btn btn-success me-2">Login</button>
                         <a href="{{ route('registration.get') }}" class="btn btn-success">Register here</a>
                     </div>
+                    <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="rememberMe" name="remember">
+                    <label class="form-check-label" for="rememberMe">Remember Me</label>
+                </div>
                 </form>
             </div>
         </div>

@@ -25,19 +25,22 @@ class AuthManager extends Controller
     }
 
     function loginPost(Request $req){
-        $req ->validate([
-            'email' => 'required',
-            'password' => 'required']);
+        $req->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
     
-
         $credentials = $req->only('email', 'password');
-
-        if (Auth::attempt($credentials)) {
-        // $req->session()->regenerate();
-
+        $remember = $req->has('remember');
+    
+        if (Auth::attempt($credentials, $remember)) {
+            // Optionally regenerate session ID
+            // $req->session()->regenerate();
+    
             return redirect()->intended(route('latest-news'));
         }
-        return redirect(route('login.get'))->with("error", "Invalid Credentials");
+    
+        return back()->withInput($req->only('email'))->with("error", "Invalid Credentials");
     }
 
     function registrationPost(Request $req){

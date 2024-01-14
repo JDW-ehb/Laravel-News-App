@@ -97,3 +97,9 @@ Route::post('/profile/update/avatar', [ProfileController::class, 'updateAvatar']
 Route::get('/contact', [ContactController::class, 'showForm'])->name('contact.show');
 Route::post('/contact', [ContactController::class, 'submitForm'])->name('contact.submit');
 Route::get('/messages', [ContactController::class, 'showMessages'])->name('messages.show');
+
+
+// about page
+Route::get('/about', function () {
+    return view('pages.about');
+})->name('about');
