@@ -22,4 +22,14 @@ class AdminController extends Controller
         $user->update(['isAdmin' => false]);
         return redirect()->back()->with('success', 'User demoted from admin successfully');
     }
+    public function destroy(User $user)
+    {
+        // Optional: Prevent deletion of self or super-admin
+        if (auth()->user()->id === $user->id) {
+            return redirect()->back()->with('error', 'You cannot delete your own account.');
+        }
+
+        $user->delete();
+        return redirect()->back()->with('success', 'User deleted successfully');
+    }
 }

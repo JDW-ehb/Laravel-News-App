@@ -38,6 +38,9 @@
         <a class="nav-link" href="{{ route('admin.index') }}">Admin Page</a>
       </li>
       @endif
+      <li class="nav-item">
+          <a class="nav-link" href="{{ route('faqs.index') }}">FAQ</a>
+      </li>
     </ul>
     
     <!-- Search Form -->

@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="text-center">
-                        <button type="submit" class="btn btn-success me-2">Submit</button>
+                        <button type="submit" class="btn btn-success me-2">Login</button>
                         <a href="{{ route('registration.get') }}" class="btn btn-success">Register here</a>
                     </div>
                 </form>

@@ -15,21 +15,27 @@
             <tbody>
                 @foreach($users as $user)
                     <tr>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>
-                            @if(!$user->isAdmin)
-                                <form action="{{ route('promote.to.admin', $user->id) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    <button type="submit" class="btn btn-success btn-sm">Promote to Admin</button>
-                                </form>
-                            @else
-                                <form action="{{ route('demote.from.admin', $user->id) }}" method="POST" class="d-inline">
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger btn-sm">Demote from Admin</button>
-                                </form>
-                            @endif
-                        </td>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td>
+                        @if(!$user->isAdmin)
+                            <form action="{{ route('promote.to.admin', $user->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                <button type="submit" class="btn btn-success btn-sm">Promote to Admin</button>
+                            </form>
+                        @else
+                            <form action="{{ route('demote.from.admin', $user->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                <button type="submit" class="btn btn-warning btn-sm">Demote from Admin</button>
+                            </form>
+                        @endif
+                        <!-- Delete User Button -->
+                        <form action="{{ route('user.destroy', $user->id) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?');">Delete</button>
+                        </form>
+                    </td>
                     </tr>
                 @endforeach
             </tbody>
