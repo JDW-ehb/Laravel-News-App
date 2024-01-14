@@ -16,14 +16,15 @@
                         <p class="card-text"><small class="text-muted">Published on: {{ $news->publishing_date->format('Y-m-d') }}</small></p>
                     </div>
                     <div class="card-footer">
-                    <a href="{{ route('news.show', $news->id) }}" class="btn btn-primary">Read more</a> 
-                    @if(auth()->check() && auth()->user()->isAdmin)
+                        <a href="{{ route('news.show', $news->id) }}" class="btn btn-primary">Read more</a>
+                        @if(auth()->check() && auth()->user()->isAdmin)
+                            <a href="{{ route('news.edit', $news->id) }}" class="btn btn-secondary">Edit</a>
                             <form action="{{ route('news.destroy', $news->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this article?');">Delete</button>
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?');">Delete</button>
                             </form>
-                    @endif                   
+                        @endif
                     </div>
                     
                 </div>

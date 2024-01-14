@@ -24,6 +24,9 @@ Route::get('/', [NewsController::class, 'latestNews'])->name('latest-news');
 Route::get('/news/create', [NewsController::class, 'create'])->name('news.create')->middleware('auth'); // Assuming only authenticated users can create articles
 Route::delete('/news/{news}', [NewsController::class, 'destroy'])->name('news.destroy');
 Route::post('/news', [NewsController::class, 'store'])->name('news.store');
+Route::get('/news/{news}/edit', [NewsController::class, 'edit'])->name('news.edit');
+Route::put('/news/{news}', [NewsController::class, 'update'])->name('news.update');
+
 
 //navigation to the full articles:
 Route::get('/news/{news}', [NewsController::class, 'show'])->name('news.show');

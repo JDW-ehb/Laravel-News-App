@@ -55,4 +55,40 @@ class NewsController extends Controller
     $news->delete();
     return redirect()->route('latest-news')->with('success', 'Article deleted successfully');
     }
+
+    public function edit(News $news)
+    {
+    // Optional: Check if the user is authorized to edit the news article
+    return view('articles.edit', compact('news'));
+    }
+
+    public function update(Request $request, News $news)
+{
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'cover_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'summary' => 'required|string|max:1000',
+        'content' => 'required|string',
+    ]);
+
+    // Update the article
+    $news->title = $request->title;
+    $news->summary = $request->summary;
+    $news->content = $request->content;
+
+    if ($request->hasFile('cover_image')) {
+        // Delete the old image, if it exists
+        if ($news->cover_image) {
+            Storage::delete($news->cover_image);
+        }
+
+        // Store the new image
+        $imagePath = $request->file('cover_image')->store('news_images', 'public');
+        $news->cover_image = Storage::url($imagePath);
+    }
+
+    $news->save(); // Save the updated news
+
+    return redirect()->route('latest-news')->with('success', 'Article updated successfully');
+}
 }

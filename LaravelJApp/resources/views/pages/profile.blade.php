@@ -14,7 +14,7 @@
         <div class="bg-primary p-3 text-white rounded">
             <div class="row">
                 <!-- Avatar -->
-                <div class="col-md-4 mb-3 mb-md-0">
+                <div class="col-md-4 mb-3 mb-md-2">
                     @if($user->avatar)
                         <img src="{{ $user->avatar }}" alt="{{ $user->name }}'s Avatar" class="img-fluid img-thumbnail">
                     @else
@@ -27,7 +27,7 @@
                     <div id="profileDisplay">
                         <p><strong>Name:</strong> {{ $user->name }}</p>
                         <p><strong>Email:</strong> {{ $user->email }}</p>
-                        <p><strong>Birthday:</strong> {{ $user->birthday ? $user->birthday->format('Y-m-d') : 'Not set' }}</p>
+                        <p><strong>Birthday:</strong> {{ $user->birthday ? $user->birthday->format('d-m-Y') : 'Not set' }}</p>
                         <p><strong>About Me:</strong> {{ $user->about_me }}</p>
                     </div>
                     <div class="row mb-3">
