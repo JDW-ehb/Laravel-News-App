@@ -13,7 +13,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $news->title }}</h5>
                         <p class="card-text">{{ \Illuminate\Support\Str::limit($news->summary, 256) }}</p>
-                        <p class="card-text"><small class="text-muted">Published on: {{ $news->publishing_date->format('Y-m-d') }}</small></p>
+                        <p class="card-text"><small class="text-muted">Published on: {{ $news->publishing_date->format('d-m-Y') }}</small></p>
                     </div>
                     <div class="card-footer">
                         <a href="{{ route('news.show', $news->id) }}" class="btn btn-primary">Read more</a>

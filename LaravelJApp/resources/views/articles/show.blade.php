@@ -5,7 +5,9 @@
     <div class="container my-5">
         <!-- Large Cover Image -->
         <p class="text-muted text-right"><small>Published on: {{ $news->publishing_date->format('Y-m-d') }}</small></p>
-        <p>Author: {{ $news->author->name ?? 'Unknown' }}</p>
+        <p class="text-muted text-right"><small>Author: {{ $news->author->name ?? 'Unknown' }}</small></p>
+
+        
 
         @if($news->cover_image)
             <div class="text-center mb-4">
@@ -43,6 +45,7 @@
         <button type="submit" class="btn btn-primary">Post Comment</button>
     </form>
 </div>
+@endauth
 <div class="container my-5">
     <h3>Comments</h3>
     @foreach($news->comments as $comment)
@@ -54,5 +57,4 @@
         </div>
     @endforeach
 </div>
-@endauth
 @endsection
