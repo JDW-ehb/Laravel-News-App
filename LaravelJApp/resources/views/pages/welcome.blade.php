@@ -8,7 +8,7 @@
             <div class="col-md-4 mb-3">
                 <div class="card h-100">
                     @if($news->cover_image)
-                        <img src="{{ asset($news->cover_image) }}" class="img-thumbnail" alt="Cover image for {{ $news->title }}">
+                    <img src="{{ asset($news->cover_image) }}" class="img-thumbnail" alt="Cover image for {{ $news->title }}">
                     @endif
                     <div class="card-body">
                         <h5 class="card-title">{{ $news->title }}</h5>
