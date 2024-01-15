@@ -19,11 +19,39 @@ class CommentsTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'news_id' => 1, // Article id 2
+                'user_id' => 9, // User id for the commenter (adjust as needed)
+                'comment' => 'try to beat it on legendary xD',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'news_id' => 1, // Article id 2
+                'user_id' => 9, // User id for the commenter (adjust as needed)
+                'comment' => 'still playing firefight on this little gem :D',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
             //elden ring article
             [
                 'news_id' => 2, // Article id 2
                 'user_id' => 15, // User id for the second commenter (adjust as needed)
                 'comment' => 'how much time did it take me to beat the game? 200 hours T_T',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'news_id' => 2, // Article id 2
+                'user_id' => 4, // User id for the second commenter (adjust as needed)
+                'comment' => 'i like suffering :)',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'news_id' => 2, // Article id 2
+                'user_id' => 6, // User id for the second commenter (adjust as needed)
+                'comment' => 'when is there a dlc coming out?',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

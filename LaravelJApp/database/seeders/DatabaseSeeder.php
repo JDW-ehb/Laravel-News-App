@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(ArticlesTableSeeder::class);
         $this->call(CommentsTableSeeder::class); // Add this line to seed comments
+        $this->call(FaqsTableSeeder::class); // Add this line to seed FAQs
+        $this->call(AdminMessagesSeeder::class); // Add this line to seed admin messages
 
     }
 }
