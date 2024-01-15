@@ -27,11 +27,14 @@ class NewsController extends Controller
             'cover_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'summary' => 'required|string|max:1000', // Validate summary
             'content' => 'required|string',
+            
+            
             // Add other validation rules as needed
         ]);
 
         $news = new News();
         $news->title = $request->title;
+        $news->user_id = auth()->id(); // Assign the author's user ID
         $news->summary = $request->summary; // Save summary
         $news->content = $request->content;
 
@@ -45,10 +48,13 @@ class NewsController extends Controller
 
         return redirect()->route('latest-news')->with('success', 'News article created successfully!');
     }
-    public function show(News $news)
-    {
-        return view('articles.show', compact('news'));
-    }
+    public function show($id)
+{
+    $news = News::with('comments.user')->findOrFail($id);
+    $news = News::with('author', 'comments.user')->findOrFail($id);
+
+    return view('articles.show', compact('news'));
+}
     public function destroy(News $news)
     {
     // Optional: Check if the user is authorized to delete the news article
@@ -91,4 +97,10 @@ class NewsController extends Controller
 
     return redirect()->route('latest-news')->with('success', 'Article updated successfully');
 }
+
+public function author()
+{
+    return $this->belongsTo(User::class, 'user_id');
+}
+
 }

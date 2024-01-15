@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,9 @@ Route::delete('/news/{news}', [NewsController::class, 'destroy'])->name('news.de
 Route::post('/news', [NewsController::class, 'store'])->name('news.store');
 Route::get('/news/{news}/edit', [NewsController::class, 'edit'])->name('news.edit');
 Route::put('/news/{news}', [NewsController::class, 'update'])->name('news.update');
+// comments of pages
+Route::post('/comments',
+[CommentController::class, 'store'])->name('comment.store')->middleware('auth');
 
 
 //navigation to the full articles:

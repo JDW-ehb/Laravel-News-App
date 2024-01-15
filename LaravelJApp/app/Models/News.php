@@ -13,4 +13,14 @@ class News extends Model
         'publishing_date' => 'datetime', // Cast as datetime
         // Other casts...
     ];
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+    
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
