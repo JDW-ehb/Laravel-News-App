@@ -4,6 +4,7 @@
 @section('content')
 <div class="container mt-4">
     <h2>Messages</h2>
+    <p>Click on the message to see it completely.</p>
     @foreach ($messages as $message)
         <div class="card mt-3 message-card" onclick="toggleMessage(this)">
             <div class="card-body">
